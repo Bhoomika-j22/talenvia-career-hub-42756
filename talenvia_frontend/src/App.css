@@ -1,104 +1,330 @@
-/* CSS Variables for Theme Management */
+/* Talenvia - Royal Purple (Elegant) theme */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --bg: #F3E8FF;            /* background */
+  --surface: #FFFFFF;       /* cards/surfaces */
+  --text: #374151;          /* primary text */
+  --muted: #6B7280;         /* secondary text */
+  --primary: #8B5CF6;       /* royal purple */
+  --primary-600: #7C3AED;
+  --success: #10B981;
+  --error: #EF4444;
+
+  --border: rgba(55, 65, 81, 0.12);
+  --shadow: 0 10px 30px rgba(17, 24, 39, 0.10);
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
+
+  --container: 1100px;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(139, 92, 246, 0.18), transparent 65%),
+              radial-gradient(900px 500px at 90% 10%, rgba(124, 58, 237, 0.14), transparent 60%),
+              var(--bg);
+  color: var(--text);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button, input, select, textarea {
+  font: inherit;
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+/* App layout */
+.AppShell {
+  min-height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.TopNav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom: 1px solid var(--border);
+}
+
+.TopNav-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 14px 16px;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  gap: 14px;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.Brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 220px;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
+.BrandMark {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.25);
+}
+
+.BrandTitle {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.BrandTitle strong {
   font-size: 14px;
-  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.BrandTitle span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.NavLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.NavLink {
+  padding: 10px 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.NavLink:hover {
+  background: rgba(139, 92, 246, 0.08);
+  color: var(--text);
+}
+
+.NavLinkActive {
+  background: rgba(139, 92, 246, 0.14);
+  color: var(--primary-600);
+}
+
+.NavRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.IconBtn {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 10px 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.IconBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(17, 24, 39, 0.08);
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.Main {
+  max-width: var(--container);
+  width: 100%;
+  margin: 0 auto;
+  padding: 18px 16px 28px 16px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+  flex: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.Sidebar {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 14px;
+  height: fit-content;
+}
+
+.SidebarTitle {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 2px 0 10px;
+}
+
+.SideLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: var(--text);
+  border: 1px solid transparent;
+}
+
+.SideLink:hover {
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.SideLinkActive {
+  border-color: rgba(139, 92, 246, 0.22);
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--primary-600);
+}
+
+.Content {
+  min-width: 0;
+}
+
+.PageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.PageHeader h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.PageHeader p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 65ch;
+}
+
+.Card {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.Card + .Card {
+  margin-top: 14px;
+}
+
+.Row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.Input, .Select {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 12px;
+  min-width: 220px;
+}
+
+.Btn {
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  color: white;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(139, 92, 246, 0.18);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+.Btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 24px rgba(139, 92, 246, 0.22);
+}
+
+.BtnSecondary {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
+  box-shadow: none;
+}
+
+.Badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--muted);
+}
+
+.BadgePrimary {
+  border-color: rgba(139, 92, 246, 0.25);
+  background: rgba(139, 92, 246, 0.10);
+  color: var(--primary-600);
+}
+
+.Table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.Table th, .Table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 14px;
+}
+
+.Table th {
+  color: var(--muted);
+  font-weight: 600;
+  background: rgba(243, 232, 255, 0.6);
+}
+
+.Table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 920px) {
+  .Main {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
+  .Brand {
+    min-width: unset;
   }
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+@media (max-width: 540px) {
+  .NavLinks {
+    display: none;
+  }
+  .Input, .Select {
+    min-width: 100%;
+    width: 100%;
   }
 }
